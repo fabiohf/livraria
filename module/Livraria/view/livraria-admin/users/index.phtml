@@ -1,0 +1,26 @@
+<h1>Users</h1>
+<br />
+<a href="<?php echo $this->url('livraria-admin-interna', array('controller' => 'users', 'action' => 'new')); ?>">Novo</a>
+
+<table class="table">
+    <tr>
+        <td>Id</td>
+        <td>Nome</td>
+        <td>Email</td>
+        <td>Ação</td>
+    </tr>
+    <?php foreach ($this->data as $entity) : ?>
+        <tr>
+            <td><?php echo $entity->getId(); ?></td>
+            <td><?php echo $entity->getNome(); ?></td>
+            <td><?php echo $entity->getEmail(); ?></td>
+            <td>
+                <a href="<?php echo $this->url('livraria-admin-interna', array('controller' => 'users', 'action' => 'edit', 'id' => $entity->getId())); ?>">Editar</a>
+                <a href="<?php echo $this->url('livraria-admin-interna', array('controller' => 'users', 'action' => 'delete', 'id' => $entity->getId())); ?>">Deletar</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+<br />
+<?php echo $this->paginationControl($this->data, 'Sliding', 'paginator'); ?>
+
